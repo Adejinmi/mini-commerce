@@ -1,0 +1,98 @@
+[
+  {
+    "id": "p1",
+    "name": "Classic White T-Shirt",
+    "slug": "classic-white-tshirt",
+    "image": "/products/white-tshirt.jpg",
+    "price": 19.99,
+    "description": "A clean and comfortable white t-shirt for everyday wear."
+  },
+  {
+    "id": "p2",
+    "name": "Blue Denim Jeans",
+    "slug": "blue-denim-jeans",
+    "image": "/products/denim-jeans.jpg",
+    "price": 49.99,
+    "description": "Slim-fit blue jeans made from 100% cotton denim."
+  },
+  {
+    "id": "p3",
+    "name": "Black Hoodie",
+    "slug": "black-hoodie",
+    "image": "/products/black-hoodie.jpg",
+    "price": 39.99,
+    "description": "Soft fleece-lined hoodie for casual style and warmth."
+  },
+  {
+    "id": "p4",
+    "name": "Running Shoes",
+    "slug": "running-shoes",
+    "image": "/products/running-shoes.jpg",
+    "price": 59.99,
+    "description": "Lightweight, breathable shoes built for performance."
+  },
+  {
+    "id": "p5",
+    "name": "Leather Wallet",
+    "slug": "leather-wallet",
+    "image": "/products/leather-wallet.jpg",
+    "price": 29.99,
+    "description": "Premium leather wallet with multiple compartments."
+  },
+  {
+    "id": "p6",
+    "name": "Smart Watch",
+    "slug": "smart-watch",
+    "image": "/products/smart-watch.jpg",
+    "price": 129.99,
+    "description": "Track your health and notifications with this sleek smartwatch."
+  },
+  {
+    "id": "p7",
+    "name": "Noise Cancelling Headphones",
+    "slug": "noise-cancelling-headphones",
+    "image": "/products/headphones.jpg",
+    "price": 89.99,
+    "description": "Experience immersive sound with active noise cancellation."
+  },
+  {
+    "id": "p8",
+    "name": "Canvas Backpack",
+    "slug": "canvas-backpack",
+    "image": "/products/backpack.jpg",
+    "price": 45.0,
+    "description": "Durable canvas backpack with multiple storage options."
+  },
+  {
+    "id": "p9",
+    "name": "Desk Lamp",
+    "slug": "desk-lamp",
+    "image": "/products/desk-lamp.jpg",
+    "price": 24.5,
+    "description": "Modern LED desk lamp with touch controls and brightness settings."
+  },
+  {
+    "id": "p10",
+    "name": "Ceramic Coffee Mug",
+    "slug": "ceramic-coffee-mug",
+    "image": "/products/coffee-mug.jpg",
+    "price": 12.0,
+    "description": "Matte black ceramic mug, 350ml capacity."
+  },
+  {
+    "id": "p11",
+    "name": "Fitness Resistance Bands",
+    "slug": "fitness-resistance-bands",
+    "image": "/products/resistance-bands.jpg",
+    "price": 15.99,
+    "description": "Set of 5 color-coded bands with varying resistance levels."
+  },
+  {
+    "id": "p12",
+    "name": "Portable Bluetooth Speaker",
+    "slug": "portable-bluetooth-speaker",
+    "image": "/products/bluetooth-speaker.jpg",
+    "price": 34.99,
+    "description": "Water-resistant speaker with rich sound and 8-hour battery life."
+  }
+]
