@@ -10,6 +10,7 @@ import MyLoader from "@/components/mLoader";
 import { toast } from "sonner";
 import { useMemo } from "react";
 import debounce from "lodash.debounce";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function CartPage() {
   const items = useCart((s) => s.items);
@@ -44,19 +45,45 @@ export default function CartPage() {
     [remove, add]
   );
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -10, scale: 0.95 },
+  };
+
   if (!hydrated) return <MyLoader />;
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-center p-6">
-        <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
-        <p className="text-muted-foreground mb-6">
-          Looks like you haven’t added anything yet.
-        </p>
-        <Button asChild>
-          <Link href="/">Browse Products</Link>
-        </Button>
-      </div>
+      <AnimatePresence mode="wait">
+        {items.length === 0 && hydrated && (
+          <motion.div
+            key="empty"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.3 }}
+            className="min-h-screen flex flex-col items-center justify-center text-center p-6"
+          >
+            <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
+            <p className="text-muted-foreground mb-6">
+              Looks like you haven’t added anything yet.
+            </p>
+            <Button asChild>
+              <Link href="/">Browse Products</Link>
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     );
   }
   return (
@@ -76,75 +103,86 @@ export default function CartPage() {
         <p className="font-[700] text-[20px]">Mini Commerce</p>
       </div>
 
-      <div className="space-y-4">
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className="flex flex-col sm:flex-row items-center justify-between gap-4 border p-4 rounded-lg"
-          >
-            <div className="flex items-center gap-4 w-full sm:w-auto">
-              <div className="relative w-20 h-20 rounded overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <h3 className="font-semibold">{item.name}</h3>
-                <p className="text-sm text-muted-foreground">
-                  ${item.price.toFixed(2)}
-                </p>
-                <div className="flex gap-[2px] items-center">
-                  <div>
-                    <p className="text-sm text-muted-foreground">
-                      {item.quantity}
-                    </p>
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <Button
-                      className="size-[12px] !p-0 cursor-pointer"
-                      variant="link"
-                      onClick={() => {
-                        updateQty(item.id, item.quantity + 1);
-                      }}
-                    >
-                      <ChevronUp className="size-[12px]" />
-                    </Button>
-                    <Button
-                      disabled={item.quantity <= 1}
-                      className="size-[12px] !p-0 cursor-pointer"
-                      variant="link"
-                      onClick={() =>
-                        item.quantity > 1
-                          ? updateQty(item.id, item.quantity - 1)
-                          : removeItem(item)
-                      }
-                    >
-                      <ChevronDown className="size-[12px]" />
-                    </Button>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="space-y-4"
+      >
+        <AnimatePresence initial={false}>
+          {items.map((item) => (
+            <motion.div
+              key={item.id}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              layout
+              className="flex flex-col sm:flex-row items-center justify-between gap-4 border p-4 rounded-lg"
+            >
+              <div className="flex items-center gap-4 w-full sm:w-auto">
+                <div className="relative w-20 h-20 rounded overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-semibold">{item.name}</h3>
+                  <p className="text-sm text-muted-foreground">
+                    ${item.price.toFixed(2)}
+                  </p>
+                  <div className="flex gap-[2px] items-center">
+                    <div>
+                      <p className="text-sm text-muted-foreground">
+                        {item.quantity}
+                      </p>
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <Button
+                        className="size-[12px] !p-0 cursor-pointer"
+                        variant="link"
+                        onClick={() => {
+                          updateQty(item.id, item.quantity + 1);
+                        }}
+                      >
+                        <ChevronUp className="size-[12px]" />
+                      </Button>
+                      <Button
+                        className="size-[12px] !p-0 cursor-pointer"
+                        variant="link"
+                        onClick={() =>
+                          item.quantity > 1
+                            ? updateQty(item.id, item.quantity - 1)
+                            : removeItem(item)
+                        }
+                      >
+                        <ChevronDown className="size-[12px]" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
-              <p className="font-medium">
-                ${(item.price * item.quantity).toFixed(2)}
-              </p>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="cursor-pointer"
-                onClick={() => removeItem(item)}
-              >
-                <Trash2 className="h-5 w-5 text-destructive" />
-              </Button>
-            </div>
-          </div>
-        ))}
-      </div>
+              <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
+                <p className="font-medium">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </p>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="cursor-pointer"
+                  onClick={() => removeItem(item)}
+                >
+                  <Trash2 className="h-5 w-5 text-destructive" />
+                </Button>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
 
       <Separator />
 
