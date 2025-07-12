@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/store/cart";
+import Link from "next/link";
 
 export type Product = {
   id: string;
@@ -42,7 +43,9 @@ export default function ProductCard({ product }: ProductCardProps) {
       </CardHeader>
 
       <CardContent>
-        <h3 className="text-lg font-semibold">{product.name}</h3>
+        <Link href={`product/${product.slug}`}>
+          <h3 className="text-lg font-semibold">{product.name}</h3>
+        </Link>
         <p className="text-sm text-muted-foreground truncate">
           {product.description}
         </p>
