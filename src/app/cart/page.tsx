@@ -1,12 +1,15 @@
 "use client";
 
-import { useCart } from "@/store/cart";
+import { CartItem, useCart } from "@/store/cart";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, ChevronUp, ShoppingCartIcon, Trash2 } from "lucide-react";
 import MyLoader from "@/components/mLoader";
+import { toast } from "sonner";
+import { useMemo } from "react";
+import debounce from "lodash.debounce";
 
 export default function CartPage() {
   const items = useCart((s) => s.items);
@@ -14,10 +17,31 @@ export default function CartPage() {
   const updateQty = useCart((s) => s.updateQty);
   const hydrated = useCart((s) => s.hydrated);
   const clear = useCart((s) => s.clear);
+  const add = useCart((s) => s.add);
 
   const total = items.reduce(
     (sum, item) => sum + item.quantity * item.price,
     0
+  );
+
+  const removeItem = useMemo(
+    () =>
+      debounce((item: CartItem) => {
+        const { id, name, quantity } = item;
+        remove(id);
+
+        toast.success(`${name} removed from cart`, {
+          action: {
+            label: "Undo",
+            onClick: () => {
+              for (let i = 0; i < item.quantity; i++) {
+                add(item);
+              }
+            },
+          },
+        });
+      }, 300),
+    [remove, add]
   );
 
   if (!hydrated) return <MyLoader />;
@@ -89,12 +113,13 @@ export default function CartPage() {
                       <ChevronUp className="size-[12px]" />
                     </Button>
                     <Button
+                      disabled={item.quantity <= 1}
                       className="size-[12px] !p-0 cursor-pointer"
                       variant="link"
                       onClick={() =>
                         item.quantity > 1
                           ? updateQty(item.id, item.quantity - 1)
-                          : remove(item.id)
+                          : removeItem(item)
                       }
                     >
                       <ChevronDown className="size-[12px]" />
@@ -112,7 +137,7 @@ export default function CartPage() {
                 variant="ghost"
                 size="icon"
                 className="cursor-pointer"
-                onClick={() => remove(item.id)}
+                onClick={() => removeItem(item)}
               >
                 <Trash2 className="h-5 w-5 text-destructive" />
               </Button>
