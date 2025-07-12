@@ -43,7 +43,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       </CardHeader>
 
       <CardContent>
-        <Link href={`product/${product.slug}`}>
+        <Link href={`/product/${product.slug}`}>
           <h3 className="text-lg font-semibold">{product.name}</h3>
         </Link>
         <p className="text-sm text-muted-foreground truncate">
