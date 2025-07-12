@@ -3,7 +3,7 @@
     "id": "p1",
     "name": "Classic White T-Shirt",
     "slug": "classic-white-tshirt",
-    "image": "/products/white-tshirt.jpg",
+    "image": "/products/white-tshirt.png",
     "price": 19.99,
     "description": "A clean and comfortable white t-shirt for everyday wear."
   },
@@ -11,7 +11,7 @@
     "id": "p2",
     "name": "Blue Denim Jeans",
     "slug": "blue-denim-jeans",
-    "image": "/products/denim-jeans.jpg",
+    "image": "/products/denim-jeans.png",
     "price": 49.99,
     "description": "Slim-fit blue jeans made from 100% cotton denim."
   },
@@ -19,7 +19,7 @@
     "id": "p3",
     "name": "Black Hoodie",
     "slug": "black-hoodie",
-    "image": "/products/black-hoodie.jpg",
+    "image": "/products/black-hoodie.png",
     "price": 39.99,
     "description": "Soft fleece-lined hoodie for casual style and warmth."
   },
@@ -27,7 +27,7 @@
     "id": "p4",
     "name": "Running Shoes",
     "slug": "running-shoes",
-    "image": "/products/running-shoes.jpg",
+    "image": "/products/running-shoes.png",
     "price": 59.99,
     "description": "Lightweight, breathable shoes built for performance."
   },
