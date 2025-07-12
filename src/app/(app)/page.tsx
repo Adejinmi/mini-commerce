@@ -6,6 +6,7 @@ import MyLoader from "@/components/mLoader";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function HomePage() {
   const { data: products = [], isLoading, error } = useProducts();
@@ -59,12 +60,14 @@ export default function HomePage() {
             </motion.div>
           ))
         ) : (
-          <div className="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
-            <div className="mx-auto bg-green-50 w-fit flex flex-col items-center">
+          <div className="col-span-1 w-full sm:col-span-2 md:col-span-3 lg:col-span-4">
+            <div className="mx-auto w-fit flex flex-col items-center">
               <p className="text-muted-foreground px-4 py-2 rounded">
                 No products found.
               </p>
-              <Button variant="link">All products</Button>
+              <Button variant="link">
+                <Link href="/">All products</Link>
+              </Button>
             </div>
           </div>
         )}
