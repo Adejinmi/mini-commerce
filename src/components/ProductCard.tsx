@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/store/cart";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export type Product = {
   id: string;
@@ -55,7 +56,13 @@ export default function ProductCard({ product }: ProductCardProps) {
         <span className="font-bold text-primary">
           ${product.price.toFixed(2)}
         </span>
-        <Button variant="outline" onClick={() => addToCart(product)}>
+        <Button
+          variant="outline"
+          onClick={() => {
+            addToCart(product);
+            toast.success(`${product.name} has been added to cart`);
+          }}
+        >
           Add to Cart
         </Button>
       </CardFooter>
