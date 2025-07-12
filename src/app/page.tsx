@@ -11,7 +11,7 @@ export default function HomePage() {
         <h1 className="font-[600] text-[38px]">Mini Commerce</h1>
         <Button variant="outline" asChild>
           <Link href={"/catalogue"}>
-            Go to catalogue <ArrowRight />
+            Let's shop <ArrowRight />
           </Link>
         </Button>
       </div>
