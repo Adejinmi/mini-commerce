@@ -8,6 +8,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/store/cart";
 
 export type Product = {
   id: string;
@@ -20,13 +21,11 @@ export type Product = {
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart?: (product: Product) => void;
 }
 
-export default function ProductCard({
-  product,
-  onAddToCart,
-}: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
+  const addToCart = useCart((state) => state.add);
+
   return (
     <Card className="w-full sm:w-[300px] flex flex-col justify-between">
       <CardHeader>
@@ -53,7 +52,7 @@ export default function ProductCard({
         <span className="font-bold text-primary">
           ${product.price.toFixed(2)}
         </span>
-        <Button variant="outline" onClick={() => onAddToCart?.(product)}>
+        <Button variant="outline" onClick={() => addToCart(product)}>
           Add to Cart
         </Button>
       </CardFooter>
