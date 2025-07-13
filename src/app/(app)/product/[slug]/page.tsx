@@ -4,6 +4,7 @@ import ProductDetail from "@/components/productDetails";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import ProductJsonLd from "@/components/seo/productJsonLd";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -20,6 +21,14 @@ export default async function ProductPage({ params }: Params) {
 
   return (
     <>
+      <ProductJsonLd
+        name={product.name}
+        image={product.image}
+        description={product.description}
+        price={product.price}
+        id={product.id}
+        slug={product.slug}
+      />
       <Button variant={"link"} asChild className="md:mx-[50px] p-6">
         <Link href={"/"}>
           <ArrowLeft />
