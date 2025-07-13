@@ -16,8 +16,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mini Commerce",
-  description: "A Technical assessment mini e-commerce app",
+  title: "Mini Commerce – Affordable Quality Products",
+  description: "Shop premium, high-quality items at unbeatable prices.",
+  keywords: [
+    "ecommerce",
+    "mini commerce",
+    "shopping",
+    "store",
+    "quality products",
+  ],
+  authors: [
+    { name: "Samuel Adejinmi", url: "https://mini-commerce.vercel.app" },
+  ],
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
