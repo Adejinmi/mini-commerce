@@ -35,7 +35,7 @@ export default function CartPage() {
           action: {
             label: "Undo",
             onClick: () => {
-              for (let i = 0; i < item.quantity; i++) {
+              for (let i = 0; i < quantity; i++) {
                 add(item);
               }
             },
@@ -87,21 +87,21 @@ export default function CartPage() {
     );
   }
   return (
-    <div className="max-w-5xl mx-auto p-6 space-y-8">
-      <div className="flex justify-between items-center mb-4">
+    <div className="max-w-5xl min-h-screen mx-auto space-y-8 p-6">
+      <header className="sticky top-0 z-10 bg-background flex justify-between py-4 border-b">
         <div className="sm:text-2xl text-xl font-bold inline-flex items-center gap-2">
           <ShoppingCartIcon />{" "}
           <span className="hidden sm:block">Your Cart</span>
           <Button
             variant="outline"
-            className="text-[12px] !px-2 !py-1 !h-fit border-red-300 cursor-pointer"
+            className="text-[12px] !px-2 !py-1 !h-fit !border-red-300 cursor-pointer"
             onClick={clear}
           >
             Clear cart
           </Button>
         </div>
         <p className="font-[700] text-[20px]">Mini Commerce</p>
-      </div>
+      </header>
 
       <motion.div
         variants={containerVariants}
@@ -109,14 +109,13 @@ export default function CartPage() {
         animate="visible"
         className="space-y-4"
       >
-        <AnimatePresence initial={false}>
+        <AnimatePresence mode="sync" initial={false}>
           {items.map((item) => (
             <motion.div
               key={item.id}
               variants={itemVariants}
               initial="hidden"
               animate="visible"
-              exit="exit"
               layout
               className="flex flex-col sm:flex-row items-center justify-between gap-4 border p-4 rounded-lg"
             >
@@ -135,11 +134,18 @@ export default function CartPage() {
                     ${item.price.toFixed(2)}
                   </p>
                   <div className="flex gap-[2px] items-center">
-                    <div>
-                      <p className="text-sm text-muted-foreground">
+                    <AnimatePresence mode="wait" initial={false}>
+                      <motion.div
+                        key={item.quantity}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.15 }}
+                        className="text-sm text-center w-fit text-muted-foreground"
+                      >
                         {item.quantity}
-                      </p>
-                    </div>
+                      </motion.div>
+                    </AnimatePresence>
                     <div className="flex flex-col justify-center">
                       <Button
                         className="size-[12px] !p-0 cursor-pointer"
@@ -158,6 +164,7 @@ export default function CartPage() {
                             ? updateQty(item.id, item.quantity - 1)
                             : removeItem(item)
                         }
+                        disabled={item.quantity <= 1}
                       >
                         <ChevronDown className="size-[12px]" />
                       </Button>
@@ -167,9 +174,18 @@ export default function CartPage() {
               </div>
 
               <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
-                <p className="font-medium">
-                  ${(item.price * item.quantity).toFixed(2)}
-                </p>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={item.quantity}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.15 }}
+                    className="font-medium"
+                  >
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </motion.span>
+                </AnimatePresence>
                 <Button
                   variant="ghost"
                   size="icon"
@@ -184,20 +200,24 @@ export default function CartPage() {
         </AnimatePresence>
       </motion.div>
 
-      <Separator />
+      <footer className="sticky z-10 bottom-0 bg-background space-y-5">
+        <Separator className="shrink-0" />
 
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p className="text-lg font-semibold">
-          Total: <span className="text-primary">${total.toFixed(2)}</span>
-        </p>
+        <div className="pb-5 flex flex-col sm:flex-row justify-between items-center gap-4 shrink-0">
+          <p className="text-lg font-semibold">
+            Total: <span className="text-primary">${total.toFixed(2)}</span>
+          </p>
 
-        <div className="flex gap-4">
-          <Button variant="outline" asChild>
-            <Link href="/">Continue Shopping</Link>
-          </Button>
-          <Button disabled>Checkout</Button>
+          <div className="flex gap-4">
+            <Button variant="outline" asChild>
+              <Link href="/">Continue Shopping</Link>
+            </Button>
+            <Button>
+              <Link href="/checkout">Checkout</Link>
+            </Button>
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
