@@ -19,6 +19,12 @@ export default function SearchBar() {
     }
   }, [pathname, searchParams]);
 
+  useEffect(() => {
+    if (search === "") {
+      router.push("/");
+    }
+  }, [search, router]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (search.trim()) {
