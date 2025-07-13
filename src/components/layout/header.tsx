@@ -1,14 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { HomeIcon, Search, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/store/cart";
 import SearchBar from "../searchBar";
 
 export default function Header() {
-  const pathname = usePathname();
   const items = useCart((s) => s.items);
   const totalQty = items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -25,7 +23,7 @@ export default function Header() {
         <Link href="/cart" className="relative">
           <ShoppingCart className="h-5 w-5" />
           {totalQty > 0 && (
-            <span className="absolute -top-2 -right-2 text-xs bg-primary text-white rounded-full px-1.5">
+            <span className="absolute -top-2 -right-2 text-xs bg-primary text-background rounded-full px-1.5">
               {totalQty}
             </span>
           )}
