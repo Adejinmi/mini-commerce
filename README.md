@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ Mini Commerce
 
-## Getting Started
+Mini Commerce is a feature-rich e-commerce frontend built with **Next.js 14**, **Tailwind CSS v4**, and **ShadCN UI**. It provides a smooth shopping experience with search, product details, cart management, and checkout flow. Built as part of a technical assessment.
 
-First, run the development server:
+---
+
+## ✨ Design Approach
+
+The goal was to create a modern, user-friendly e-commerce interface with a clean and responsive layout. Key decisions include:
+
+- **Component-Driven Development:** Used modular and reusable UI components via ShadCN.
+- **State Management:** Leveraged Zustand (`/store/cart`) for lightweight global cart state.
+- **Styling:** Applied Tailwind CSS v4 with a monochrome theme which can be extended to use custom themes and utility-first styling.
+- **Animations:** Used Framer Motion for smooth interactions, including cart transitions and page fades.
+- **Accessibility & UX:** Included empty-state messaging, loading skeletons, undo toasts, and keyboard-friendly controls.
+- **SEO Consideration:** Embedded structured data and dynamic Open Graph metadata for shareability and visibility.
+
+---
+
+## 🚀 Features
+
+- Product listing with search (Search is carried out on the frontend)
+- Add to cart with quantity control & undo
+- Checkout summary & confirmation
+- Theme toggle (light/dark/system)
+- Open Graph meta & structured data (JSON-LD)
+- Image optimization using `next/image`
+- Custom 404 page
+- One unit test with Jest + React Testing Library
+
+---
+
+## 🧱 Tech Stack
+
+- **Next.js 14 (App Router)**
+- **Tailwind CSS v4**
+- **ShadCN UI**
+- **React Query**, **Framer Motion**, **Sonner**, **Lodash**
+- **Jest** & **React Testing Library**
+
+---
+
+## 📦 Installation
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧪 Testing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run unit tests:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run test
+```
 
-## Learn More
+Test: `ProductCard` component tested with Jest + RTL.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🗂 Folder Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/                 # Pages & routing
+├── components/          # UI components
+├── lib/                 # Data fetcher
+├── store/               # Global state (cart)
+├── data/                # Dummy products
+├── hooks/               # Products fetcher
 
-## Deploy on Vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔍 SEO
+
+- Dynamic metadata with `generateMetadata()`
+- Open Graph image previews via `/api/og`
+- Product schema using JSON-LD
+- Optimized images with `next/image`
+
+Built with ❤️ by **\[Samuel Adejinmi]**
