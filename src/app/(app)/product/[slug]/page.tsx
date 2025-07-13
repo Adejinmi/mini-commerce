@@ -5,13 +5,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-type Params = { params: { slug: string } };
+type Params = { params: Promise<{ slug: string }> };
 
 export default async function ProductPage({ params }: Params) {
   const products = await fetchProducts();
-  const product = products.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const product = products.find((p) => p.slug === slug);
   const alsoBought = products
-    .filter((p) => p.slug !== params.slug)
+    .filter((p) => p.slug !== slug)
     .sort(() => Math.random() - 0.5)
     .slice(0, 4);
 
