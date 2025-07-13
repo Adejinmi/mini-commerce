@@ -88,7 +88,7 @@ export default function CartPage() {
   }
   return (
     <div className="max-w-5xl min-h-screen mx-auto space-y-8 p-6">
-      <header className="sticky top-0 z-10 bg-background flex justify-between py-4 border-b">
+      <header className="sticky top-0 z-10 bg-background flex justify-between items-center py-4 border-b">
         <div className="sm:text-2xl text-xl font-bold inline-flex items-center gap-2">
           <ShoppingCartIcon />{" "}
           <span className="hidden sm:block">Your Cart</span>
