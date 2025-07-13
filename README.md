@@ -30,6 +30,16 @@ The goal was to create a modern, user-friendly e-commerce interface with a clean
 
 ---
 
+## 🛠️ Error Handling
+
+- **User Feedback:** Uses toast notifications (`sonner`) to notify users of key actions (e.g., adding/removing items).
+- **Async Handling:** Product fetch errors are gracefully handled with fallback UI (`Failed to load products` message).
+- **Hydration Checks:** Zustand cart store uses a `hydrated` flag to prevent mismatches between SSR and client render.
+- **404 & Fallback Routes:** Custom `not-found.tsx` page displays when a product slug is invalid or missing.
+- **Undo Support:** Undo feature in cart removal lets users quickly reverse accidental deletions.
+
+---
+
 ## 🧱 Tech Stack
 
 - **Next.js 14 (App Router)**
