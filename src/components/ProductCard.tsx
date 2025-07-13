@@ -29,7 +29,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const addToCart = useCart((state) => state.add);
 
   return (
-    <Card className="w-full sm:w-[300px] flex flex-col justify-between">
+    <Card className="w-full max-w-xs sm:w-[300px] flex flex-col justify-between">
       <CardHeader>
         <div className="relative w-full h-48 rounded-md overflow-hidden">
           <Image
