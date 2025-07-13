@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { useMemo } from "react";
 import debounce from "lodash.debounce";
 import { motion, AnimatePresence } from "framer-motion";
+import { Logo } from "@/components/layout/header";
 
 export default function CartPage() {
   const items = useCart((s) => s.items);
@@ -90,8 +91,7 @@ export default function CartPage() {
     <div className="max-w-5xl min-h-screen mx-auto space-y-8 p-6">
       <header className="sticky top-0 z-10 bg-background flex justify-between items-center py-4 border-b">
         <div className="sm:text-2xl text-xl font-bold inline-flex items-center gap-2">
-          <ShoppingCartIcon />{" "}
-          <span className="hidden sm:block">Your Cart</span>
+          <ShoppingCartIcon /> <span>Your Cart</span>
           <Button
             variant="outline"
             className="text-[12px] !px-2 !py-1 !h-fit !border-red-300 cursor-pointer"
@@ -100,7 +100,7 @@ export default function CartPage() {
             Clear cart
           </Button>
         </div>
-        <p className="font-[700] text-[20px]">Mini Commerce</p>
+        <Logo />
       </header>
 
       <motion.div
