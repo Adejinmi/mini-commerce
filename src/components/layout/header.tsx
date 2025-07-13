@@ -6,17 +6,22 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/store/cart";
 import SearchBar from "../searchBar";
 
+export const Logo = () => {
+  return (
+    <Link href="/" className="flex gap-[5px] items-center">
+      <HomeIcon />
+      <p className="font-[700] text-[20px] hidden sm:block">Mini Commerce</p>
+    </Link>
+  );
+};
+
 export default function Header() {
   const items = useCart((s) => s.items);
   const totalQty = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <header className="sticky top-0 z-20 bg-background p-4 flex justify-between shadow-md">
-      <Link href="/" className="flex gap-[5px] items-center">
-        <HomeIcon />
-        <p className="font-[700] text-[20px] hidden sm:block">Mini Commerce</p>
-      </Link>
-
+      <Logo />
       <SearchBar />
 
       <Button variant="outline" size="icon" asChild>
