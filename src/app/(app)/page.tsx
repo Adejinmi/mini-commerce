@@ -43,7 +43,7 @@ export default function HomePage() {
     </div>;
 
   return (
-    <div className="p-4 md:px-[50px]">
+    <main className="p-4 md:px-[50px]">
       <blockquote className="border-l-4 border-primary pl-[10px] mb-[40px] font-[600] text-[12px]">
         {breadcrumbText}
       </blockquote>
@@ -72,6 +72,6 @@ export default function HomePage() {
           </div>
         )}
       </motion.div>
-    </div>
+    </main>
   );
 }
