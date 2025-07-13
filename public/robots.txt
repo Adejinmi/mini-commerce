@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://mini-commerce-pearl.vercel.app/
+
+# Sitemaps
+Sitemap: https://mini-commerce-pearl.vercel.app/sitemap.xml

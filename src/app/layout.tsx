@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "quality products",
   ],
   authors: [
-    { name: "Samuel Adejinmi", url: "https://mini-commerce.vercel.app" },
+    { name: "Samuel Adejinmi", url: "https://mini-commerce-pearl.vercel.app" },
   ],
 };
 
