@@ -1,7 +1,6 @@
 "use client";
 
 import { useCart } from "@/store/cart";
-import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";

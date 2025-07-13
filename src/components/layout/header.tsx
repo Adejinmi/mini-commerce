@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { HomeIcon, Search, ShoppingCart } from "lucide-react";
+import { HomeIcon, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/store/cart";
 import SearchBar from "../searchBar";
