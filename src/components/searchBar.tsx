@@ -39,7 +39,7 @@ export default function SearchBar() {
       onSubmit={handleSubmit}
       className="relative w-[250px] sm:w-full max-w-md flex items-center"
     >
-      <Search className="absolute left-3 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+      <Search className="absolute left-3 h-4 w-4 text-muted-foreground" />
       <Input
         type="search"
         placeholder="Search products..."
